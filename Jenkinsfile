@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/rameshkumarvermagithub/Valentine-Day-DevOps-Project.git'
+                git branch: 'main', url: 'https://github.com/rameshkumarvermagithub/Valentine-Day-DevOps-Project.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -69,7 +69,7 @@ pipeline{
             steps{
                 sh "docker stop valentine-day-devOps-project || true"  // Stop the container if it's running, ignore errors
                 sh "docker rm valentine-day-devOps-project || true" 
-                sh "docker run -d --name valentine-day-devOps-project -p 8000:8000 rameshkumarverma/valentine-day-devOps-project"
+                sh "docker run -d --name valentine-day-devOps-project -p 80:80 rameshkumarverma/valentine-day-devOps-project"
             }
         }
       // stage('Deploy to Kubernetes') {
