@@ -53,23 +53,23 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh "docker build -t rameshkumarverma/valentine-day-devOps-project ."
-                       // sh "docker tag valentine-day-devOps-project rameshkumarverma/valentine-day-devOps-project:latest"
-                       sh "docker push rameshkumarverma/valentine-day-devOps-project:latest"
+                       sh "docker build -t rameshkumarverma/valentine-day-devops-project ."
+                       // sh "docker tag valentine-day-devops-project rameshkumarverma/valentine-day-devops-project:latest"
+                       sh "docker push rameshkumarverma/valentine-day-devops-project:latest"
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image rameshkumarverma/valentine-day-devOps-project:latest > trivyimage.txt"
+                sh "trivy image rameshkumarverma/valentine-day-devops-project:latest > trivyimage.txt"
             }
         }
         stage("deploy_docker"){
             steps{
-                sh "docker stop valentine-day-devOps-project || true"  // Stop the container if it's running, ignore errors
-                sh "docker rm valentine-day-devOps-project || true" 
-                sh "docker run -d --name valentine-day-devOps-project -p 80:80 rameshkumarverma/valentine-day-devOps-project"
+                sh "docker stop valentine-day-devops-project || true"  // Stop the container if it's running, ignore errors
+                sh "docker rm valentine-day-devops-project || true" 
+                sh "docker run -d --name valentine-day-devops-project -p 80:80 rameshkumarverma/valentine-day-devops-project"
             }
         }
       // stage('Deploy to Kubernetes') {
